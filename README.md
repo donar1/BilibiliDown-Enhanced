@@ -49,16 +49,24 @@ LICENSE/                 原项目 Apache-2.0 许可证 + 第三方组件许可�
 
 完整可运行包不放仓库，见 [Releases](https://github.com/donar1/BilibiliDown-Enhanced/releases)（**下载量不占 git 历史，更新也不会撑大仓库**）。
 
-## 自己从源码打包
+## 补丁源码怎么用
 
-```bash
-# 需要有 JDK 11+ 和本地已解压的原版 BilibiliDown v6.41
-cd BilibiliDown
+本仓库只有补丁源码，**不含主程序 jar 和 Java 运行时，不能单独打出完整包**。
+要用它，先准备原版：
+
+1. 自行下载原版 BilibiliDown v6.41，解压到任意目录
+2. 把本仓库的 `src/nicelee/bilibili/upall/` 整个目录拷到该目录下的 `upall-patch/src/nicelee/bilibili/upall/`
+3. 装 JDK 11 或更高版本
+4. 在该目录执行编译：
+
+```bat
 javac --release 11 -encoding UTF-8 -cp "INeedBiliAV.jar" -d "upall-patch\classes" upall-patch\src\nicelee\bilibili\upall\*.java
-python 打包分享版.py
 ```
 
-产物在 `dist/`。
+5. 让补丁生效：启动命令的 classpath 里加上 `;upall-patch\classes`，主类换成 `nicelee.bilibili.upall.UpallBoot`
+
+> `tools\打包分享版.py` 是按作者本机的目录结构写的（依赖 `runtime\`、`记录工具\` 这些未入库的文件），
+> 直接照搬路径会失败，需按自己的目录改路径。
 
 ## 技术要点
 

@@ -1,0 +1,12 @@
+# 完整可运行包只走 Releases，绝不进 git
+*.zip
+*.7z
+dist/
+
+# Python 产物
+__pycache__/
+*.pyc
+
+# 封面缓存与下载内容
+.covercache/
+download/
